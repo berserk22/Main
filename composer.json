@@ -1,0 +1,19 @@
+{
+  "name": "skeleton-app/main",
+  "description": "SkeletonApp Module Main",
+  "require": {
+    "php": ">=8.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Modules\\Main\\": "/"
+    }
+  },
+  "extra": {
+    "branch-alias": {
+      "dev-master": "master"
+    }
+  },
+  "minimum-stability": "dev",
+  "prefer-stable": false
+}
