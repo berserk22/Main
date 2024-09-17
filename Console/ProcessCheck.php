@@ -61,7 +61,7 @@ class ProcessCheck extends Command {
         if (!is_dir($process_logs_path."/".$name)) {
             mkdir($process_logs_path . "/" . $name, 0755);
         }
-        exec("php console ".$process." >".$process_logs_path."/".$name."/".$name."_log.log 2>".$process_logs_path."/".$name."/".$name."_error.log &", $out);
+        exec("php console ".$process." >".$process_logs_path."/".$name."/".$name."_log.log 2>".$process_logs_path."/".$name."/".$name."_error.log &");
         sleep(1);
     }
 
