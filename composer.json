@@ -1,12 +1,13 @@
 {
   "name": "skeleton-app/main",
   "description": "SkeletonApp Module Main",
+  "type": "modules",
   "require": {
     "php": ">=8.2"
   },
   "autoload": {
     "psr-4": {
-      "Modules\\Main\\": "/"
+      "Modules\\Main\\": "/modules/Main/"
     }
   },
   "extra": {
