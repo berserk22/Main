@@ -93,16 +93,21 @@ class MainModel {
     }
 
     /**
-     * @param int $group_id
+     * @param int|string $group
      * @return array
      * @throws DependencyException
      * @throws NotFoundException
      */
-    public function getSettings(int $group_id): array {
-        $settings = $this->getMainManager()->getSettingsEntity()::where("settings_group_id", "=", $group_id)->get();
+    public function getSettings(int|string $group): array {
+        if (is_int($group)){
+            $settingsGroup = $this->getMainManager()->getSettingsGroupEntity()::find($group);
+        }
+        else {
+            $settingsGroup = $this->getMainManager()->getSettingsGroupEntity()::where("key", "=", $group)->get();
+        }
         $settingsArray=[];
-        foreach($settings as $setting){
-            $settingsArray[$setting->key] = $setting->value;
+        foreach($settingsGroup->getSettings() as $setting){
+            $settingsArray[str_replace($settingsGroup->key."_", "", $setting->key)] = $setting->value;
         }
         return $settingsArray;
     }
