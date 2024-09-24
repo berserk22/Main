@@ -103,7 +103,7 @@ class MainModel {
             $settingsGroup = $this->getMainManager()->getSettingsGroupEntity()::find($group);
         }
         else {
-            $settingsGroup = $this->getMainManager()->getSettingsGroupEntity()::where("key", "=", $group)->get();
+            $settingsGroup = $this->getMainManager()->getSettingsGroupEntity()::where("key", "=", $group)->first();
         }
         $settingsArray=[];
         foreach($settingsGroup->getSettings() as $setting){
