@@ -11,6 +11,7 @@ use Core\Module\Provider;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Modules\Database\MigrationCollection;
+use Modules\Main\Console\DBProcessCheck;
 use Modules\Main\Console\Minify;
 use Modules\Main\Console\ProcessCheck;
 use Modules\Main\Db\Schema;
@@ -64,6 +65,7 @@ class ServiceProvider extends Provider {
         return [
             ProcessCheck::class,
             Minify::class,
+            DBProcessCheck::class
         ];
     }
 
@@ -119,6 +121,9 @@ class ServiceProvider extends Provider {
         }
     }
 
+    /**
+     * @return void
+     */
     public function boot(): void {
         $container = $this->getContainer();
         $container->set('Modules\Main\Controller\IndexController', function(){

@@ -155,6 +155,8 @@ class MainModel {
         $car_liste = [];
         if ($this->getContainer()->has('Cars\Manager')){
             $carsManager = $this->getContainer()->get('Cars\Manager');
+            $car_liste[]=$domainSetting["protocol"].'://'.$domainSetting["name"].$this->getMainRouter()
+                    ->getUrl("cars_list");
             $cars = $carsManager->getCarsEntity()::select("gtin", "updated_at")->where('status', '=', 1)->get();
             foreach ($cars as $car){
                 $car_liste[]=$domainSetting["protocol"].'://'.$domainSetting["name"].$this->getMainRouter()

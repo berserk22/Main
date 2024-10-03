@@ -69,8 +69,6 @@ class IndexController extends Controller {
         }
 
         if (is_null($page)){
-
-
             $response->withStatus(404);
             $this->getView()->setVariables([
                 'seo'=>[
