@@ -10,10 +10,10 @@ namespace Modules\Main\Plugins;
 class MD5 {
 
     /**
-     * @param string $str
+     * @param string|null $str
      * @return string
      */
-    public function process(string $str = ''): string {
+    public function process(string|null $str = ''): string {
         $hash = "";
         if (!empty($str)){
             $hash = hash("sha512", $str);

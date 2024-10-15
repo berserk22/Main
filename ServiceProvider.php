@@ -56,6 +56,7 @@ class ServiceProvider extends Provider {
         'getDomain'=>'\Modules\Main\Plugins\GetDomain',
         'getSiteSettings'=>'\Modules\Main\Plugins\GetSiteSettings',
         'getPageGroup'=>'\Modules\Main\Plugins\GetPageGroup',
+        'getPrice'=>'\Modules\Main\Plugins\GetPrice',
     ];
 
     /**
