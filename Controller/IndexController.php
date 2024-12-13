@@ -11,6 +11,7 @@ use Core\Module\Controller;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Modules\Main\MainTrait;
+use Modules\Seo\SeoTrait;
 use Slim\Http\ServerRequest as Request;
 use Slim\Http\Response;
 
@@ -34,6 +35,9 @@ class IndexController extends Controller {
      * @throws NotFoundException
      */
     public function index(Request $request, Response $response): Response {
+        $uriPath = $request->getUri()->getPath();
+        $seo = $this->getSeoManager()->getSeoEntity()::where("path", "=", $uriPath)->first();
+
         $this->getView()->setVariables([
             'seo'=>[
                 'title'=>'Startseite',
@@ -43,6 +47,14 @@ class IndexController extends Controller {
                 'Home'=>'',
             ],
         ]);
+        
+        if (!empty($seo)){
+            $this->getView()->setVariables([
+                'seo'=>[
+                    'title'=>$seo->title,
+                ],
+            ]);
+        }
 
         return $this->getView()->render($response, 'index');
     }

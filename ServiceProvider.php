@@ -127,9 +127,11 @@ class ServiceProvider extends Provider {
      */
     public function boot(): void {
         $container = $this->getContainer();
-        $container->set('Modules\Main\Controller\IndexController', function(){
-            return new Controller\IndexController($this);
-        });
+        if (!$container->has('Modules\Main\Controller\IndexController')){
+            $container->set('Modules\Main\Controller\IndexController', function(){
+                return new Controller\IndexController($this);
+            });
+        }
 
         $container->set('Modules\Main\ApiController\IndexController', function(){
             return new ApiController\IndexController($this);

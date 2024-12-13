@@ -62,4 +62,16 @@ trait MainTrait {
     public function getMainModel():MainModel {
         return $this->getContainer()->get('Main\Model');
     }
+
+    /**
+     * @return mixed
+     * @throws DependencyException
+     * @throws NotFoundException
+     */
+    public function getSeoManager(): mixed {
+        if ($this->getContainer()->has('Seo\Manager')){
+            return $this->getContainer()->get('Seo\Manager');
+        }
+        return null;
+    }
 }
