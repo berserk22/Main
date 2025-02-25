@@ -17,11 +17,15 @@ class GetActiveActions extends AbstractPlugin {
     use MainTrait;
 
     /**
+     * @param bool $sort
      * @return mixed
      * @throws DependencyException
      * @throws NotFoundException
      */
-    public function process(): mixed {
+    public function process(bool $sort = true): mixed {
+        if ($sort === false){
+            return $this->getMainManager()->getActionsEntity()::where('status', '=', 1)->OrderBy('id', 'ASC')->get();
+        }
         return $this->getMainManager()->getActionsEntity()::where('status', '=', 1)->OrderBy('id', 'DESC')->get();
     }
 }
