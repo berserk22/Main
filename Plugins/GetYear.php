@@ -13,7 +13,7 @@ class GetYear {
      * @param string|null $date
      * @return int
      */
-    public function process(string $date = null): int {
+    public function process(?string $date = null): int {
         if ($date===null) {
             $date = date("Y");
         }

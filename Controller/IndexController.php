@@ -12,8 +12,8 @@ use DI\DependencyException;
 use DI\NotFoundException;
 use Modules\Main\MainTrait;
 use Modules\Seo\SeoTrait;
-use Slim\Http\ServerRequest as Request;
-use Slim\Http\Response;
+use Psr\Http\Message\ServerRequestInterface as Request;
+use Slim\Psr7\Response;
 
 class IndexController extends Controller {
 
@@ -47,11 +47,12 @@ class IndexController extends Controller {
                 'Home'=>'',
             ],
         ]);
-        
+
         if (!empty($seo)){
             $this->getView()->setVariables([
                 'seo'=>[
                     'title'=>$seo->title,
+                    'description'=>$seo->description,
                 ],
             ]);
         }

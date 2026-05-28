@@ -22,7 +22,7 @@ class GetPageGroup extends AbstractPlugin {
      * @throws DependencyException
      * @throws NotFoundException
      */
-    public function process(int|string $group = null): mixed {
+    public function process(int|string|null $group = null): mixed {
         return $this->getMainModel()->getPageGroup($group);
     }
 

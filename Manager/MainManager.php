@@ -50,39 +50,27 @@ class MainManager {
      */
     public function initEntity(): static {
         if (!$this->getContainer()->has($this->page)){
-            $this->getContainer()->set($this->page, function(){
-                return 'Modules\Main\Db\Models\Page';
-            });
+            $this->getContainer()->set($this->page, 'Modules\Main\Db\Models\Page');
         }
 
         if (!$this->getContainer()->has($this->pageGroup)){
-            $this->getContainer()->set($this->pageGroup, function(){
-                return 'Modules\Main\Db\Models\PageGroup';
-            });
+            $this->getContainer()->set($this->pageGroup, 'Modules\Main\Db\Models\PageGroup');
         }
 
         if (!$this->getContainer()->has($this->landingPage)){
-            $this->getContainer()->set($this->landingPage, function(){
-                return 'Modules\Main\Db\Models\LandingPage';
-            });
+            $this->getContainer()->set($this->landingPage, 'Modules\Main\Db\Models\LandingPage');
         }
 
         if (!$this->getContainer()->has($this->settings)){
-            $this->getContainer()->set($this->settings, function(){
-                return 'Modules\Main\Db\Models\Settings';
-            });
+            $this->getContainer()->set($this->settings, 'Modules\Main\Db\Models\Settings');
         }
 
         if (!$this->getContainer()->has($this->settingsGroup)){
-            $this->getContainer()->set($this->settingsGroup, function(){
-                return 'Modules\Main\Db\Models\SettingsGroup';
-            });
+            $this->getContainer()->set($this->settingsGroup, 'Modules\Main\Db\Models\SettingsGroup');
         }
 
         if (!$this->getContainer()->has($this->actions)){
-            $this->getContainer()->set($this->actions, function(){
-                return 'Modules\Main\Db\Models\Actions';
-            });
+            $this->getContainer()->set($this->actions, 'Modules\Main\Db\Models\Actions');
         }
         return $this;
     }

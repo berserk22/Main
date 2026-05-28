@@ -15,7 +15,7 @@ use Modules\Main\MainTrait;
 use Modules\Product\Manager\ProductManager;
 use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\NotFoundExceptionInterface;
-use Slim\Http\ServerRequest as Request;
+use Psr\Http\Message\ServerRequestInterface as Request;
 
 class MainModel {
 
@@ -118,7 +118,7 @@ class MainModel {
      * @throws DependencyException
      * @throws NotFoundException
      */
-    public function getPageGroup(int|string $group = null): mixed {
+    public function getPageGroup(int|string|null $group = null): mixed {
         $pageGroups = null;
         if (is_null($group)){
             $pageGroups = $this->getMainManager()->getPageGroupEntity()::where('status', '=', 'publish')

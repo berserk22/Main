@@ -13,7 +13,7 @@ class GetDay {
      * @param string|null $date
      * @return string
      */
-    public function process(string $date = null): string {
+    public function process(?string $date = null): string {
         if ($date===null) {
             $date = date("d.m.Y");
         }

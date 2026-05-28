@@ -2,7 +2,7 @@
 
 /**
  * @author Sergey Tevs
- * @email sergey@tevs.org
+ * @email tevs.sergey@gmail.com
  */
 
 namespace Modules\Main\Db;
@@ -40,7 +40,7 @@ class Schema extends Migration {
             $this->schema()->create("page", function(Blueprint $table){
                 $table->engine = "InnoDB";
                 $table->increments("id");
-                $table->integer("page_group_id")->default(1);
+                $table->integer("page_group_id")->nullable(true);
                 $table->string("name");
                 $table->string("title");
                 $table->string("description")->nullable();

@@ -20,8 +20,8 @@ class PageGroup extends Model {
     /**
      * @return Collection
      */
-    public function getPages(): Collection {
-        return $this->hasMany('Modules\Main\Db\Models\Page')->get();
+    public function getPages(string $status = "publish"): Collection {
+        return $this->hasMany('Modules\Main\Db\Models\Page')->where("status", "=", $status)->get();
     }
 
 }

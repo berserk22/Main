@@ -14,7 +14,7 @@ class DateTime {
      * @param bool $todayOnlyTime
      * @return string
      */
-    public function process(string $date = null, bool $todayOnlyTime = true): string {
+    public function process(?string $date = null, bool $todayOnlyTime = true): string {
         $today = date("d.m.Y ", time());
         $dateTime = date("d.m.Y H:i", strtotime($date));
         if ($todayOnlyTime){

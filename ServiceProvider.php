@@ -76,15 +76,11 @@ class ServiceProvider extends Provider {
     public function init(): void {
         $container = $this->getContainer();
         if (!$container->has($this->route)){
-            $container->set($this->route, function(){
-                return new Router($this);
-            });
+            $container->set($this->route, new Router($this));
         }
 
         if (!$container->has($this->routeApi)){
-            $container->set($this->routeApi, function(){
-                return new ApiRouter($this);
-            });
+            $container->set($this->routeApi, new ApiRouter($this));
         }
     }
 
@@ -100,15 +96,11 @@ class ServiceProvider extends Provider {
         }
 
         if (!$container->has('Main\Manager')) {
-            $this->getContainer()->set('Main\Manager', function(){
-                $manager = new MainManager($this);
-                return $manager->initEntity();
-            });
+            $manager = new MainManager($this);
+            $this->getContainer()->set('Main\Manager', $manager->initEntity());
         }
 
-        $container->set('Main\Model', function () {
-            return new MainModel($this);
-        });
+        $container->set('Main\Model', new MainModel($this));
 
         if ($container->has('ViewManager::View')) {
             /** @var $viewer ViewManager */
@@ -128,14 +120,10 @@ class ServiceProvider extends Provider {
     public function boot(): void {
         $container = $this->getContainer();
         if (!$container->has('Modules\Main\Controller\IndexController')){
-            $container->set('Modules\Main\Controller\IndexController', function(){
-                return new Controller\IndexController($this);
-            });
+            $container->set('Modules\Main\Controller\IndexController', new Controller\IndexController($this));
         }
 
-        $container->set('Modules\Main\ApiController\IndexController', function(){
-            return new ApiController\IndexController($this);
-        });
+        $container->set('Modules\Main\ApiController\IndexController', new ApiController\IndexController($this));
     }
 
     /**

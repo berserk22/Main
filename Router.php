@@ -37,7 +37,7 @@ class Router extends \Core\Module\Router {
         ],
         'page' => [
             'callback' => 'page',
-            'pattern' => '/{page:[a-z0-9-/_]+}',
+            'pattern' => '/{page:slug}',
             'method'=>['GET']
         ],
         'sitemap'=>[

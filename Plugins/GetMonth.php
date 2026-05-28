@@ -48,7 +48,7 @@ class GetMonth {
      * @param string $lang
      * @return string
      */
-    public function process(string $date = null, string $lang = 'de'): string {
+    public function process(?string $date = null, string $lang = 'de'): string {
         if ($date===null) {
             $date = date("d.m.Y");
         }
