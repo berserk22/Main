@@ -11,7 +11,6 @@ use Core\Module\Controller;
 use DI\DependencyException;
 use DI\NotFoundException;
 use Modules\Main\MainTrait;
-use Modules\Seo\SeoTrait;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Psr7\Response;
 

@@ -7,6 +7,7 @@
 
 namespace Modules\Main\Manager;
 
+use Core\Cache\FileCache;
 use Core\Config\Config;
 use DI\DependencyException;
 use DI\NotFoundException;
@@ -99,6 +100,20 @@ class MainModel {
      * @throws NotFoundException
      */
     public function getSettings(int|string $group): array {
+        $cacheKey = 'main_settings_' . $group;
+        $apcuAvailable = function_exists('apcu_enabled') && apcu_enabled();
+        if ($apcuAvailable) {
+            $cached = apcu_fetch($cacheKey, $found);
+            if ($found) {
+                return $cached;
+            }
+        } else {
+            $fileCache = new FileCache(ROOT_DIR . 'cache/settings');
+            $cached = $fileCache->get($cacheKey);
+            if ($cached !== null) {
+                return $cached;
+            }
+        }
         if (is_int($group)){
             $settingsGroup = $this->getMainManager()->getSettingsGroupEntity()::find($group);
         }
@@ -108,6 +123,11 @@ class MainModel {
         $settingsArray=[];
         foreach($settingsGroup->getSettings() as $setting){
             $settingsArray[str_replace($settingsGroup->key."_", "", $setting->key)] = $setting->value;
+        }
+        if ($apcuAvailable) {
+            apcu_store($cacheKey, $settingsArray, 3600);
+        } else {
+            $fileCache->set($cacheKey, $settingsArray, 3600);
         }
         return $settingsArray;
     }
